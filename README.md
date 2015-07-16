@@ -16,10 +16,10 @@ and to build the js dependencies for the html files:
 gulp
 ```
 
-Get a web server started so that phantom can request it and make screenshots:
+# Bulk Rendering to PNG instructions
 
-```
-http-server
-```
+Run `eval $(phantomjs command.js checkmate_puzzles_60.txt)` to generate all the PNG images.
 
-Now that you have an http server running locally, you can run `phantomjs render_FEN_as_PNG.js` to make a png image of the website it renders.
+## Details
+
+The `command.js` file generates the commands to turn the FEN strings into raster images. Each command is a call to `phantomjs rasterize.js` with the appropriate args. The solution is really odd, but it works. Eval just evaulates each command.
