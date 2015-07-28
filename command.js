@@ -20,6 +20,7 @@ var readFenStrsFromFile = function(filename) {
 
 var renderFenStr = function(fenStr) {
   var page = require('webpage').create();
+  var fs = require('fs');
   var fenUnderScore = fenStr.replace(/\//g, "_").split(" ")[0], fenQuery = "";
 
   if(fenStr == "") {
@@ -28,10 +29,10 @@ var renderFenStr = function(fenStr) {
     fenQuery = "?" + fenStr;
   }
 
-  var url = "file:////Users/tlehman/src/chessview/playground/starting-position.html"+ fenQuery.replace(/\ /g, "%20");
+  var url = "file:///" + fs.workingDirectory + "/playground/starting-position.html"+ fenQuery.replace(/\ /g, "%20");
   var output = "img/" + fenUnderScore + ".png";
 
-  var command = "phantomjs rasterize.js '" + url + "' " + output + ";";
+  var command = "phantomjs rasterize.js '" + url + "' " + output + " '465px*465px';";
 
   console.log(command);
 }
